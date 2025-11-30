@@ -26,3 +26,18 @@ body {
 }
 
 .hidden {display: none;}
+
+/* Button */
+button {
+  padding: 10px 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  background: #00b4d8;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+button:hover {background: #0096c7;}
