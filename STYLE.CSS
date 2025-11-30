@@ -69,3 +69,40 @@ button:hover {background: #0096c7;}
 #board.easy .card { max-width: 90px; } /*bigger cards */
 #board.medium .card { max-width: 70px;}
 #board.hard .card { max-width: 58px;}
+
+/* CARD INNER FLIP */
+.inner {
+  width: 100%;
+  height: 100;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.card.flipped .inner {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  width: 100%;
+  height: 100;
+  position: absolute;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  font-size: 26px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.front {
+  background: #4CAF50;
+  color: white;
+}
+
+.back {
+  background: #FFA559;
+  transform: rotateY(180deg);
+}
+
