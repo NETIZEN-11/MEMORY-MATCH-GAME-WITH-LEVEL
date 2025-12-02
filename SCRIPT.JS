@@ -92,6 +92,86 @@ function startGame(level) {
 
 // RESET GAME
 
+function resetGame() {
+    score = 0;
+    matchedCount = 0;
+    selected = [];
+    // TWO FLIP CARD OF ARRAY EMPTY
+    isPaused = false;
+    isInputLocked = false;
+    // MISMATCH LOCK /TIME OVER/WIN LOCK
+
+    clearInterval(interval);
+    // OLDER TIME DEL
+
+    timer = remainingTime;
+    // SHOW TIMER
+    scoreEl.textContent = score;
+    // UPDATE UI SCORE
+    timeEl.textContent = timer;
+    // UPDATE UI TIME
+    matchesEl.textContent = matchedCount;
+    // SHOW HOW MANY CARDS HAVE BEEN SUCCESFULLY MATCHED SO FAR
+
+    board.innerHTML = "";
+    // CLEAN OLDER CARD
+    message.classList.add("hidden");
+    // LEVEL COMP ->TIME OVER MSG HIDE
+
+    pauseBtn.textContent = "Pause";
+    // RESET THE PAUSE BOTTON
+}
+// CREATE BOARDS
+function createBoard(total) {
+    board.classList.remove("easy", "medium", "hard");
+    // REMOVE THE BEFORE CLASS LEVEL
+    board.classList.add(currentLevel);
+    // ADD NEW LEVEL
+
+    let arr = [];
+    // STORE THE CARD VALUE
+
+    for (let i = 1; i <= total / 2; i++) {
+        arr.push(i, i);
+    }
+    // USING LOOP DIV BY 2 BEACAUSE MATCH PAIR CARD
+
+    arr = shuffle(arr);
+    // PAIR THE RANDOM POSITION FIX
+
+// SET THE NO OF THE COLUMNS
+    let cols = Math.sqrt(total);
+    board.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+    arr.forEach(value => {
+        const card = document.createElement("div");
+        card.className = "card";
+        // CREATE NEW DIV CARD
+        card.dataset.value = value;
+        // SET THE MATCHING CARD VALUE
+
+        card.innerHTML = `
+            <div class="inner">
+                <div class="front">?</div>
+                <div class="back">${value}</div>
+            </div>
+            
+        `;
+        // CREATE THE CARD FRONT AND BAC
+        // THIS STRUCTURE BASE ON CSS FLIP ANIMATION
+
+        card.onclick = () => {
+            if (!isInputLocked) flipCard(card);
+        };
+        // IF CARD FLIP BUT INPUT LOCKED HONE PR CARD NOT FLIP
+
+        board.appendChild(card);
+        // ADD TWO CARD IN BOARD
+        // ALL CARD ARRANGE IN GRID
+    });
+    
+    
+}
 
 
 
