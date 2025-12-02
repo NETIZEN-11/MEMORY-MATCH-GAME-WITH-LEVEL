@@ -8,27 +8,29 @@
 </head>
 <body>
 
-    <script src="script.js"></script>
     <!-- Start Screen -->
     <div class="start-screen" id="startScreen">
         <h1>Memory Match Game</h1>
         <button id="startBtn">Start Game</button>
+    </div>
+
     <!-- Level Screen -->
-     <div class="level-screen hidden" id="levelScreen">
+    <div class="level-screen hidden" id="levelScreen">
         <h2>Select Level</h2>
         <div class="levels">
             <button class="level" data-level="easy">Easy</button>
             <button class="level" data-level="medium">Medium</button>
             <button class="level" data-level="hard">Hard</button>
         </div>
-     </div>
-     <!-- Game Screen -->
-      <div class="game-screen hidden" id="gameScreen">
+    </div>
+
+    <!-- Game Screen -->
+    <div class="game-screen hidden" id="gameScreen">
 
         <div class="info">
             <p>Score: <span id="score">0</span></p>
-            <p>Time: <spam id="time">0</spam> sec</p>
-            <p>Matches: <span id="Matches">0</span></p>
+            <p>Time: <span id="time">0</span> sec</p>
+            <p>Matches: <span id="matches">0</span></p>
         </div>
 
         <div id="board" class="board"></div>
@@ -37,12 +39,12 @@
             <button id="pauseBtn">Pause</button>
             <button id="restartBtn">Restart</button>
             <button id="backBtn">Back</button>
-      </div>
+        </div>
 
-      <div id="message" class="message hidden"></div>
+        <div id="message" class="message hidden"></div>
     </div>
 
-     <!-- Sounds -->
+    <!-- Sounds -->
     <audio id="s_flip" src="FLIP SOUND.wav"></audio>
     <audio id="s_match" src="MATCH SOUND.wav"></audio>
     <audio id="s_wrong" src="WRONG SOUND.wav"></audio>
