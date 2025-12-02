@@ -54,4 +54,44 @@ const timerConfig = {
     hard: 120
 };
 
+// START
+startBtn.onclick = () => {
+    startScreen.classList.add("hidden");
+    // IN CSS HIDEEN -> DISPLAY NONE
+    levelScreen.classList.remove("hidden");
+    // SHOW THE LEVEL SCREEN
+    // REMOVE THE HIDDEN CLASS
+};
+
+// SELECT LEVEL
+document.querySelectorAll(".level").forEach(btn => {
+    btn.onclick = () => startGame(btn.dataset.level);
+    // SELECT ALL LEVEL USE FOR EACH LOOP AND ALL BOOTON ADD EVENT
+});
+
+// START GAME FUNCTION
+function startGame(level) {
+    currentLevel = level;
+    // USER CHOSE LEVEL
+    remainingTime = timerConfig[level];
+    // TIMER SET = LEVEL
+
+
+    resetGame();
+
+    levelScreen.classList.add("hidden");
+    // LEVEL SCREEN HIDE 
+    gameScreen.classList.remove("hidden");
+    // GAME SCREEN SHOW
+
+    createBoard(levelConfig[level]);
+    // CREATE THE BOARD GRID
+    startTimer();
+    // START TIMER
+}
+
+// RESET GAME
+
+
+
 
