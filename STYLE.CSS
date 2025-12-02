@@ -1,4 +1,4 @@
-GENERAL
+/* GENERAL */
 * {
   margin: 0;
   padding: 0;
@@ -16,18 +16,22 @@ body {
 }
 
 /* SCREENS */
-.start-screen, .level-screen, .game-screen {
-  background: rgba(255,255,255,0.1);
+.start-screen,
+.level-screen,
+.game-screen {
+  background: rgba(255, 255, 255, 0.1);
   padding: 30px;
-  width:380px;
+  width: 380px;
   border-radius: 20px;
   text-align: center;
   backdrop-filter: blur(10px);
 }
 
-.hidden {display: none;}
+.hidden {
+  display: none;
+}
 
-/* Button */
+/* BUTTON */
 button {
   padding: 10px 18px;
   margin: 5px;
@@ -40,7 +44,9 @@ button {
   transition: 0.25s;
 }
 
-button:hover {background: #0096c7;}
+button:hover {
+  background: #0096c7;
+}
 
 /* INFO BAR */
 .info {
@@ -57,23 +63,32 @@ button:hover {background: #0096c7;}
   justify-content: center;
 }
 
-/* AUTO-PESIZING CARDS */
+/* AUTO-RESIZING CARDS (Perfect Square) */
 .card {
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1;   /* keeps card perfectly square */
   width: 100%;
-  max-width: 80px; /* easy level size*/
-  perspective: 100px;
+  max-width: 80px;
+  perspective: 1000px;
   cursor: pointer;
 }
 
-#board.easy .card { max-width: 90px; } /*bigger cards */
-#board.medium .card { max-width: 70px;}
-#board.hard .card { max-width: 58px;}
+/* Level-based card sizes */
+#board.easy .card {
+  max-width: 90px;
+}
+
+#board.medium .card {
+  max-width: 70px;
+}
+
+#board.hard .card {
+  max-width: 58px;
+}
 
 /* CARD INNER FLIP */
 .inner {
   width: 100%;
-  height: 100;
+  height: 100%;   /* fixed */
   transition: 0.6s;
   transform-style: preserve-3d;
   position: relative;
@@ -83,9 +98,11 @@ button:hover {background: #0096c7;}
   transform: rotateY(180deg);
 }
 
-.front, .back {
+/* FRONT & BACK FACES */
+.front,
+.back {
   width: 100%;
-  height: 100;
+  height: 100%;   /* fixed */
   position: absolute;
   border-radius: 10px;
   backface-visibility: hidden;
@@ -97,16 +114,16 @@ button:hover {background: #0096c7;}
 }
 
 .front {
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
 }
 
 .back {
-  background: #FFA559;
+  background: #ffa559;
   transform: rotateY(180deg);
 }
 
-/* Message */
+/* MESSAGE BOX */
 .message {
   margin-top: 10px;
   background: #d4edda;
@@ -114,5 +131,3 @@ button:hover {background: #0096c7;}
   padding: 10px;
   border-radius: 10px;
 }
-
-
