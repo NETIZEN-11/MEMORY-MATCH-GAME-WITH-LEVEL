@@ -173,5 +173,125 @@ function createBoard(total) {
     
 }
 
+// fFLIP CARD
+function flipCard(card) {
+    if (isPaused) return;  
+    // IF GAME PAUSE CARD NOT FLIP
+    if (isInputLocked) return; 
+    // IF WRONG MATCHH THEN 600MS LETTER THEN FLIP BLOCK
+    if (card.classList.contains("flipped")) return;
+    // STOP TWO TIME FLIP CARD
+    if (selected.length === 2) return;
+    // ONE TIME TWO CARD FLIP
+
+    flipSound.play();
+    // START SOUND
+    card.classList.add("flipped");
+    // CSS 3D ROTATE
+    selected.push(card);
+    // AFTER FLIP THE ADD EMPTY ARRAY
+
+    if (selected.length === 2) checkMatch();
+    // IF TWO CARD FLIP THE CHECK MATCH RUN
+}
+
+// CHECK MATCH
+function checkMatch() {
+    const [c1, c2] = selected;
+
+    isInputLocked = true;
+    // FIRST CARD MATCH THEN NEXT CARD FLIP
+
+    // MATCH CASES-
+
+    if (c1.dataset.value === c2.dataset.value) {
+        matchSound.play();
+
+        score += 10;
+        matchedCount += 2;
+// UI UPDATE
+        scoreEl.textContent = score;
+        matchesEl.textContent = matchedCount;
+// EMPTY ARRAY THEN CARD FLIP
+        selected = [];
+        isInputLocked = false;
+        // WIN CONDITION
+
+        if (matchedCount === levelConfig[currentLevel]) {
+            winSound.play();
+            clearInterval(interval);
+            isInputLocked = true;
+            message.textContent = "🎉 Level Complete!";
+            message.classList.remove("hidden");
+        }
+
+    } else {
+        // WRONG CASE(MISMATCH)
+        wrongSound.play();
+        setTimeout(() => {
+            c1.classList.remove("flipped");
+            c2.classList.remove("flipped");
+            selected = [];
+            isInputLocked = false;
+        }, 600);
+        // 600 MS AFTER CARD FLIP
+    }
+}
+
+// TIMER
+function startTimer() {
+    clearInterval(interval);
+    // OLDER TIME BAND
+
+    interval = setInterval(() => {
+        if (isPaused) return;
+        // FUN RUN IN EACH SECOND
+        // AFTER PAUSE THEN TIMER STOP
+
+        remainingTime--;
+        // TIME = TIME-1
+        timeEl.textContent = remainingTime;
+        // UPDATE SCREEN TIME
+
+
+// TIME OVER CASE
+        if (remainingTime <= 0) {
+            clearInterval(interval);
+            isInputLocked = true;
+            message.textContent = "⏳ Time Over!";
+            message.classList.remove("hidden");
+        }
+    }, 1000);
+}
+
+// SHUFFLE
+function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+//    Shuffle = swapping array elements from the end to the beginning with random positions so the entire deck gets perfectly mixed.
+}
+// BUTTONS
+// PAUSE BTN
+pauseBtn.onclick = () => {
+    isPaused = !isPaused;
+    pauseBtn.textContent = isPaused ? "Resume" : "Pause";
+
+    if (!isPaused) startTimer();
+};
+// RESTART BTN
+restartBtn.onclick = () => {
+    remainingTime = timerConfig[currentLevel];
+    startGame(currentLevel);
+};
+// BACK BTN
+backBtn.onclick = () => {
+    clearInterval(interval);
+    gameScreen.classList.add("hidden");
+    levelScreen.classList.remove("hidden");
+    message.classList.add("hidden");
+};
 
 
