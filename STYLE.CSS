@@ -522,41 +522,33 @@ body {
   display: flex; 
   gap: 15px; 
   justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
-.modal-actions .btn-primary {
+.modal-actions .btn-primary,
+.modal-actions .btn-secondary {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
   border: 2px solid rgba(255, 255, 255, 0.5);
   color: #ffffff;
   font-weight: 700;
-  padding: 12px 30px;
+  padding: 12px 35px;
   font-size: 14px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal-actions .btn-primary:hover {
+.modal-actions .btn-primary:hover,
+.modal-actions .btn-secondary:hover {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.25) 100%);
   border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 8px 25px rgba(255, 200, 230, 0.4);
-  transform: translateY(-2px);
-}
-
-.modal-actions .btn-secondary {
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 600;
-  padding: 12px 30px;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.modal-actions .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transform: translateY(-2px);
 }
 .settings-row { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:10px 0; }
