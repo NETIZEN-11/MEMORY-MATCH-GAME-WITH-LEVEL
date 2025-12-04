@@ -10,39 +10,124 @@
 
     <!-- Start Screen -->
     <div class="start-screen" id="startScreen">
-        <h1>Memory Match Game</h1>
-        <button id="startBtn">Start Game</button>
+        <div class="start-container">
+            <div class="logo">🧠</div>
+            <h1 class="game-title">Memory Match</h1>
+            <p class="subtitle">Test your memory skills</p>
+            <div class="high-score-section">
+                <p>High Score: <span id="highScore">0</span></p>
+            </div>
+            <button id="startBtn" class="btn-primary">Play Game</button>
+            <div class="sound-toggle-start">
+                <button id="soundToggleStart" class="btn-icon">🔊</button>
+            </div>
+        </div>
     </div>
 
     <!-- Level Screen -->
     <div class="level-screen hidden" id="levelScreen">
-        <h2>Select Level</h2>
-        <div class="levels">
-            <button class="level" data-level="easy">Easy</button>
-            <button class="level" data-level="medium">Medium</button>
-            <button class="level" data-level="hard">Hard</button>
+        <div class="level-container">
+            <h2>Select Difficulty</h2>
+            <p class="level-subtitle">Choose your challenge</p>
+            <div class="levels">
+                <button class="level easy-btn" data-level="easy">
+                    <span class="level-icon">⭐</span>
+                    <span class="level-name">Easy</span>
+                    <span class="level-info">16 Cards</span>
+                </button>
+                <button class="level medium-btn" data-level="medium">
+                    <span class="level-icon">⭐⭐</span>
+                    <span class="level-name">Medium</span>
+                    <span class="level-info">36 Cards</span>
+                </button>
+                <button class="level hard-btn" data-level="hard">
+                    <span class="level-icon">⭐⭐⭐</span>
+                    <span class="level-name">Hard</span>
+                    <span class="level-info">64 Cards</span>
+                </button>
+            </div>
+            <button id="backFromLevel" class="btn-secondary">Back</button>
         </div>
     </div>
 
     <!-- Game Screen -->
     <div class="game-screen hidden" id="gameScreen">
-
-        <div class="info">
-            <p>Score: <span id="score">0</span></p>
-            <p>Time: <span id="time">0</span> sec</p>
-            <p>Matches: <span id="matches">0</span></p>
+        <div class="game-header">
+            <div class="level-display" id="levelDisplay">Easy</div>
+            <button id="soundToggle" class="btn-icon-small">🔊</button>
         </div>
 
-        <div id="board" class="board"></div>
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-label">Score</div>
+                <div class="stat-value" id="score">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Time</div>
+                <div class="stat-value" id="time">0</div>
+                <div class="stat-unit">sec</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Matches</div>
+                <div class="stat-value" id="matches">0</div>
+            </div>
+        </div>
+
+        <div class="game-board-container">
+            <div id="board" class="board"></div>
+        </div>
+
+            <!-- Progress bar for remaining time -->
+            <div class="progress-wrap">
+                <div id="timeProgress" class="time-progress"></div>
+            </div>
 
         <div class="controls">
-            <button id="pauseBtn">Pause</button>
-            <button id="restartBtn">Restart</button>
-            <button id="backBtn">Back</button>
+            <button id="pauseBtn" class="btn-control">⏸ Pause</button>
+            <button id="restartBtn" class="btn-control">🔄 Restart</button>
+            <button id="backBtn" class="btn-control">⬅ Back</button>
         </div>
 
         <div id="message" class="message hidden"></div>
     </div>
+
+        <!-- Congratulations Modal -->
+        <div id="congratsModal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="congratsTitle">🎉 Congratulations!</h2>
+                <p id="congratsMessage">You completed the level.</p>
+                <div class="modal-actions">
+                    <button id="modalRestart" class="btn-primary">Play Again</button>
+                    <button id="modalBack" class="btn-secondary">Back to Levels</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Settings</h3>
+                <div class="settings-row">
+                    <label>Sound</label>
+                    <button id="settingsSound" class="btn-icon">🔊</button>
+                </div>
+                <div class="settings-row">
+                    <label>Theme</label>
+                    <button id="settingsTheme" class="btn-icon">🌙</button>
+                </div>
+                <div class="settings-row">
+                    <label>Card back</label>
+                    <select id="cardBackSelect">
+                        <option value="🎮">Game</option>
+                        <option value="⭐">Star</option>
+                        <option value="❓">Classic</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button id="settingsClose" class="btn-primary">Save</button>
+                </div>
+            </div>
+        </div>
 
     <!-- Sounds -->
     <audio id="s_flip" src="FLIP SOUND.wav"></audio>
